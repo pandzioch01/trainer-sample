@@ -30,6 +30,7 @@ import {
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
 
 const ease = [0.16, 1, 0.3, 1]
+const imageUrl = (filename) => `${import.meta.env.BASE_URL}images/${filename}`
 
 const programs = [
   {
@@ -258,7 +259,7 @@ function Hero({ onBook }) {
     >
       <img
         className="hero__image"
-        src="/images/hero-forma01.png"
+        src={imageUrl('hero-forma01.png')}
         alt="Trener personalny pomaga podopiecznej wykonać ćwiczenie z kettlebell w kameralnym studiu"
       />
       <div className="hero__veil" aria-hidden="true" />
@@ -372,7 +373,7 @@ function Method() {
             </div>
           </Reveal>
           <Reveal className="method-photo" delay={0.1}>
-            <img src="/images/group-training.png" alt="Kameralny trening funkcjonalny pod opieką trenera" />
+            <img src={imageUrl('group-training.png')} alt="Kameralny trening funkcjonalny pod opieką trenera" />
             <div className="photo-badge"><Users size={17} /> Maks. 4 osoby</div>
           </Reveal>
           <Reveal className="principles-card" delay={0.2}>
@@ -441,7 +442,7 @@ function About({ onBook }) {
       <div className="container about__grid">
         <Reveal className="about__image-wrap">
           <div className="about__image">
-            <img src="/images/trainer-marek.png" alt="Marek Lewandowski, trener personalny FORMA/01" />
+            <img src={imageUrl('trainer-marek.png')} alt="Marek Lewandowski, trener personalny FORMA/01" />
           </div>
           <motion.div
             className="experience-stamp"
@@ -655,7 +656,7 @@ function FAQ() {
 function ClosingCTA({ onBook }) {
   return (
     <section className="closing-cta">
-      <img className="closing-cta__image" src="/images/hero-forma01.png" alt="" aria-hidden="true" loading="lazy" />
+      <img className="closing-cta__image" src={imageUrl('hero-forma01.png')} alt="" aria-hidden="true" loading="lazy" />
       <div className="closing-cta__overlay" aria-hidden="true" />
       <div className="container closing-cta__content">
         <Reveal>
