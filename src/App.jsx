@@ -5,10 +5,8 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
-  CalendarDays,
   Check,
   ChevronDown,
-  Clock3,
   Dumbbell,
   HeartPulse,
   Camera,
@@ -164,14 +162,11 @@ function Reveal({ children, className = '', delay = 0 }) {
   )
 }
 
-function ArrowButton({ children, variant = 'lime', onClick, href, type = 'button' }) {
-  const Tag = href ? motion.a : motion.button
+function ArrowButton({ children, variant = 'lime', href }) {
   return (
-    <Tag
+    <motion.a
       className={`arrow-button arrow-button--${variant}`}
       href={href}
-      onClick={onClick}
-      type={href ? undefined : type}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: 'spring', stiffness: 400, damping: 24 }}
@@ -180,11 +175,11 @@ function ArrowButton({ children, variant = 'lime', onClick, href, type = 'button
       <span className="arrow-button__icon">
         <ArrowUpRight size={17} strokeWidth={2.4} />
       </span>
-    </Tag>
+    </motion.a>
   )
 }
 
-function Header({ onBook }) {
+function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -210,7 +205,7 @@ function Header({ onBook }) {
         <a href="#cennik">Cennik</a>
       </nav>
       <div className="header-actions">
-        <button className="header-cta" onClick={onBook}>Umów konsultację <ArrowUpRight size={16} /></button>
+        <a className="header-cta" href="#oferta">Zobacz ofertę <ArrowUpRight size={16} /></a>
         <button
           className="menu-toggle"
           aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
@@ -233,7 +228,7 @@ function Header({ onBook }) {
             <a href="#oferta" onClick={goTo}>Oferta</a>
             <a href="#o-mnie" onClick={goTo}>O mnie</a>
             <a href="#cennik" onClick={goTo}>Cennik</a>
-            <button onClick={() => { goTo(); onBook() }}>Umów konsultację</button>
+            <a className="mobile-nav__cta" href="#oferta" onClick={goTo}>Zobacz ofertę</a>
           </motion.nav>
         )}
       </AnimatePresence>
@@ -241,7 +236,7 @@ function Header({ onBook }) {
   )
 }
 
-function Hero({ onBook }) {
+function Hero() {
   const [pointer, setPointer] = useState({ x: 50, y: 50 })
 
   return (
@@ -292,7 +287,7 @@ function Hero({ onBook }) {
             <p>
               Bez presji i planów z internetu. Dostajesz trening, który pasuje do Twojego ciała, celu i kalendarza.
             </p>
-            <ArrowButton onClick={onBook}>Bezpłatna konsultacja</ArrowButton>
+            <ArrowButton href="#oferta">Zobacz ofertę</ArrowButton>
           </motion.div>
         </div>
         <motion.div
@@ -396,7 +391,7 @@ function Method() {
   )
 }
 
-function Programs({ onBook }) {
+function Programs() {
   return (
     <section className="section programs" id="oferta">
       <div className="container">
@@ -424,7 +419,7 @@ function Programs({ onBook }) {
                   </div>
                   <div className="program-card__footer">
                     <span>{program.meta}</span>
-                    <button aria-label={`Sprawdź ${program.title}`} onClick={onBook}><ArrowUpRight size={20} /></button>
+                    <a href="#cennik" aria-label={`Zobacz cennik: ${program.title}`}><ArrowUpRight size={20} /></a>
                   </div>
                 </motion.article>
               </Reveal>
@@ -436,7 +431,7 @@ function Programs({ onBook }) {
   )
 }
 
-function About({ onBook }) {
+function About() {
   return (
     <section className="section about" id="o-mnie">
       <div className="container about__grid">
@@ -476,7 +471,7 @@ function About({ onBook }) {
             <div><HeartPulse size={20} /><span><strong>Precision Nutrition</strong> L1</span></div>
           </Reveal>
           <Reveal delay={0.24}>
-            <ArrowButton variant="dark" onClick={onBook}>Poznajmy się</ArrowButton>
+            <ArrowButton variant="dark" href="#proces">Jak pracuję</ArrowButton>
           </Reveal>
         </div>
       </div>
@@ -559,7 +554,7 @@ function Testimonials() {
   )
 }
 
-function Pricing({ onBook }) {
+function Pricing() {
   const [mode, setMode] = useState('studio')
   const plans = useMemo(() => pricePlans[mode], [mode])
 
@@ -597,12 +592,12 @@ function Pricing({ onBook }) {
                 <ul>
                   {plan.features.map((feature) => <li key={feature}><Check size={17} /> {feature}</li>)}
                 </ul>
-                <ArrowButton variant={plan.featured ? 'lime' : 'ghost'} onClick={onBook}>Wybieram {plan.name}</ArrowButton>
+                <ArrowButton variant={plan.featured ? 'lime' : 'ghost'} href="#proces">Jak wygląda współpraca</ArrowButton>
               </article>
             ))}
           </motion.div>
         </AnimatePresence>
-        <p className="pricing-note">Pakiety są ważne 35 dni. Pierwsza konsultacja i trening próbny: <strong>0 zł</strong>.</p>
+        <p className="pricing-note">Ceny i pakiety są przykładowe — ta strona jest szablonem demonstracyjnym.</p>
       </div>
     </section>
   )
@@ -653,7 +648,7 @@ function FAQ() {
   )
 }
 
-function ClosingCTA({ onBook }) {
+function ClosingCTA() {
   return (
     <section className="closing-cta">
       <img className="closing-cta__image" src={imageUrl('hero-forma01.png')} alt="" aria-hidden="true" loading="lazy" />
@@ -662,8 +657,8 @@ function ClosingCTA({ onBook }) {
         <Reveal>
           <span className="eyebrow eyebrow--light"><span className="eyebrow__dot" /> Zrób pierwszy krok</span>
           <h2>Twoja forma nie musi<br />czekać na „lepszy moment”.</h2>
-          <p>30 minut rozmowy. Zero presji. Konkretny pomysł na Twój start.</p>
-          <ArrowButton onClick={onBook}>Umów bezpłatną konsultację</ArrowButton>
+          <p>Jeden dobry krok może zmienić codzienność. Poznaj dostępne formaty treningu.</p>
+          <ArrowButton href="#oferta">Zobacz ofertę</ArrowButton>
         </Reveal>
       </div>
     </section>
@@ -703,112 +698,26 @@ function Footer() {
   )
 }
 
-function BookingModal({ open, onClose }) {
-  const [sent, setSent] = useState(false)
-
-  useEffect(() => {
-    if (!open) return undefined
-    const onKey = (event) => event.key === 'Escape' && onClose()
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [open, onClose])
-
-  const close = () => {
-    onClose()
-    window.setTimeout(() => setSent(false), 300)
-  }
-
-  return (
-    <AnimatePresence>
-      {open && (
-        <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={close}>
-          <motion.div
-            className="booking-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="booking-title"
-            initial={{ opacity: 0, y: 35, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 25, scale: 0.98 }}
-            transition={{ duration: 0.35, ease }}
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <button className="modal-close" onClick={close} aria-label="Zamknij"><X /></button>
-            {!sent ? (
-              <>
-                <div className="booking-modal__header">
-                  <span className="eyebrow"><span className="eyebrow__dot" /> Pierwszy krok</span>
-                  <h2 id="booking-title">Umów bezpłatną konsultację.</h2>
-                  <p>Zostaw kontakt. Oddzwonię w ciągu jednego dnia roboczego i wspólnie wybierzemy termin.</p>
-                </div>
-                <form onSubmit={(event) => { event.preventDefault(); setSent(true) }}>
-                  <label>Jak masz na imię?<input type="text" name="name" placeholder="Twoje imię" required /></label>
-                  <div className="form-row">
-                    <label>E-mail<input type="email" name="email" placeholder="ty@email.pl" required /></label>
-                    <label>Telefon<input type="tel" name="phone" placeholder="+48 000 000 000" required /></label>
-                  </div>
-                  <label>Co jest Twoim celem?
-                    <select name="goal" defaultValue="">
-                      <option value="" disabled>Wybierz główny cel</option>
-                      <option>Więcej siły i sprawności</option>
-                      <option>Redukcja masy ciała</option>
-                      <option>Powrót do regularnego ruchu</option>
-                      <option>Przygotowanie do wyzwania</option>
-                    </select>
-                  </label>
-                  <button className="form-submit" type="submit">Wyślij zgłoszenie <ArrowUpRight size={18} /></button>
-                  <small>Wysyłając formularz, zgadzasz się na kontakt w sprawie konsultacji.</small>
-                </form>
-              </>
-            ) : (
-              <motion.div className="success-state" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}>
-                <span><Check size={34} /></span>
-                <h2>Dobra decyzja.</h2>
-                <p>Formularz demonstracyjny działa poprawnie. W wersji produkcyjnej w tym miejscu zgłoszenie trafi do Twojej skrzynki lub kalendarza.</p>
-                <button onClick={close}>Wróć do strony</button>
-              </motion.div>
-            )}
-            <div className="booking-modal__aside">
-              <div className="aside-mark">F/01</div>
-              <div>
-                <span><CalendarDays size={18} /> 30 minut</span>
-                <span><Clock3 size={18} /> Bez zobowiązań</span>
-                <span><MapPin size={18} /> Online lub studio</span>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
 export default function App() {
-  const [bookingOpen, setBookingOpen] = useState(false)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 })
 
   return (
     <>
       <motion.div className="scroll-progress" style={{ scaleX }} />
-      <Header onBook={() => setBookingOpen(true)} />
+      <Header />
       <main>
-        <Hero onBook={() => setBookingOpen(true)} />
+        <Hero />
         <Method />
-        <Programs onBook={() => setBookingOpen(true)} />
-        <About onBook={() => setBookingOpen(true)} />
+        <Programs />
+        <About />
         <Process />
         <Testimonials />
-        <Pricing onBook={() => setBookingOpen(true)} />
+        <Pricing />
         <FAQ />
-        <ClosingCTA onBook={() => setBookingOpen(true)} />
+        <ClosingCTA />
       </main>
       <Footer />
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   )
 }
