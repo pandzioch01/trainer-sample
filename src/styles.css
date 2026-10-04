@@ -47,9 +47,9 @@ img { display: block; max-width: 100%; }
 .mobile-nav { display: none; }
 
 .hero { position: relative; min-height: 850px; height: 100svh; max-height: 1050px; overflow: hidden; background: #0d0e0c; color: white; }
-.hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.015); animation: heroZoom 12s ease-out both; }
+.hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.78) saturate(.8); transform: scale(1.015); animation: heroZoom 12s ease-out both; }
 @keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1.015); } }
-.hero__veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,6,5,.92) 0%, rgba(5,6,5,.7) 35%, rgba(5,6,5,.12) 72%), linear-gradient(0deg, rgba(5,6,5,.66) 0%, transparent 46%); }
+.hero__veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,6,5,.92) 0%, rgba(5,6,5,.72) 35%, rgba(5,6,5,.36) 75%), linear-gradient(0deg, rgba(5,6,5,.7) 0%, transparent 52%); }
 .hero::after { content: ''; position: absolute; width: 50vw; height: 50vw; left: calc(var(--mx) - 25vw); top: calc(var(--my) - 25vw); background: radial-gradient(circle, rgba(199,244,61,.09), transparent 65%); pointer-events: none; transition: left .2s ease-out, top .2s ease-out; }
 .hero__grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 88px 88px; mask-image: linear-gradient(90deg, black, transparent 64%); }
 .hero__content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 140px; padding-bottom: 42px; }
@@ -144,6 +144,7 @@ img { display: block; max-width: 100%; }
 .about h2 { margin: 20px 0 34px; font-size: clamp(44px, 5.1vw, 76px); line-height: .98; letter-spacing: -.06em; }
 .about__lead { color: var(--ink) !important; font-size: 19px !important; line-height: 1.62 !important; }
 .about__content p { max-width: 610px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.about__content .about__photo-note { max-width: 480px; margin: -12px 0 18px; color: var(--muted); font-size: 12px; line-height: 1.4; }
 .credentials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 40px 0 38px; }
 .credentials > div { display: flex; align-items: flex-start; gap: 10px; padding: 17px 12px 17px 0; border-top: 1px solid var(--line); }
 .credentials svg { flex: 0 0 auto; color: #7b991f; }
@@ -233,7 +234,10 @@ img { display: block; max-width: 100%; }
 .footer__column a { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.7); font-size: 12px; transition: color .2s; }
 .footer__column a:hover { color: var(--lime); }
 .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.35); font-size: 9px; }
-.footer__bottom a { display: flex; align-items: center; gap: 7px; }
+.footer__bottom > a { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+.footer__legal { display: flex; max-width: 820px; flex-direction: column; gap: 4px; color: rgba(255,255,255,.62); font-size: 11px; line-height: 1.5; }
+.footer__legal a { color: rgba(255,255,255,.65); text-decoration: underline; text-underline-offset: 2px; }
+.footer__legal a:hover { color: var(--lime); }
 
 .not-found { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: var(--ink); color: white; }
 .not-found__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; opacity: .5; }
@@ -354,6 +358,7 @@ img { display: block; max-width: 100%; }
   .footer__top { grid-template-columns: 1fr 1fr; gap: 45px 25px; }
   .footer__top > div:first-child { grid-column: 1 / -1; }
   .footer__bottom { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .footer__legal { max-width: 100%; }
 }
 
 /* Full-screen browsing mode ------------------------------------------------ */

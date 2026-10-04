@@ -12,7 +12,7 @@ export default function NotFound() {
     <main className="not-found">
       <img
         className="not-found__image"
-        src={`${home}images/hero-forma01.png`}
+        src={`${home}images/hero-vitaly-gariev.jpg`}
         alt=""
         aria-hidden="true"
       />

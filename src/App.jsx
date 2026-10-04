@@ -254,8 +254,8 @@ function Hero() {
     >
       <img
         className="hero__image"
-        src={imageUrl('hero-forma01.png')}
-        alt="Trener personalny pomaga podopiecznej wykonać ćwiczenie z kettlebell w kameralnym studiu"
+        src={imageUrl('hero-vitaly-gariev.jpg')}
+        alt="Instruktor pomaga kobiecie wykonać ćwiczenie z drążkiem w siłowni — fotografia poglądowa"
       />
       <div className="hero__veil" aria-hidden="true" />
       <div className="hero__grid" aria-hidden="true" />
@@ -368,7 +368,7 @@ function Method() {
             </div>
           </Reveal>
           <Reveal className="method-photo" delay={0.1}>
-            <img src={imageUrl('group-training.png')} alt="Kameralny trening funkcjonalny pod opieką trenera" />
+            <img src={imageUrl('training-julia-larson.jpg')} alt="Kobieta ćwiczy z linami treningowymi pod okiem instruktora — fotografia poglądowa" />
             <div className="photo-badge"><Users size={17} /> Maks. 4 osoby</div>
           </Reveal>
           <Reveal className="principles-card" delay={0.2}>
@@ -437,7 +437,7 @@ function About() {
       <div className="container about__grid">
         <Reveal className="about__image-wrap">
           <div className="about__image">
-            <img src={imageUrl('trainer-marek.png')} alt="Marek Lewandowski, trener personalny FORMA/01" />
+            <img src={imageUrl('portrait-ali-alcantara.jpg')} alt="Model w siłowni; zdjęcie nie przedstawia fikcyjnego trenera Marka Lewandowskiego" />
           </div>
           <motion.div
             className="experience-stamp"
@@ -456,6 +456,7 @@ function About() {
           <Reveal>
             <span className="eyebrow"><span className="eyebrow__dot" /> Twój trener</span>
             <h2>Marek Lewandowski.<br /><em>Ruch to narzędzie, nie kara.</em></h2>
+            <p className="about__photo-note">Zdjęcie poglądowe — osoba na fotografii jest modelem i nie jest Markiem Lewandowskim.</p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="about__lead">
@@ -651,7 +652,7 @@ function FAQ() {
 function ClosingCTA() {
   return (
     <section className="closing-cta">
-      <img className="closing-cta__image" src={imageUrl('hero-forma01.png')} alt="" aria-hidden="true" loading="lazy" />
+      <img className="closing-cta__image" src={imageUrl('hero-vitaly-gariev.jpg')} alt="" aria-hidden="true" loading="lazy" />
       <div className="closing-cta__overlay" aria-hidden="true" />
       <div className="container closing-cta__content">
         <Reveal>
@@ -691,7 +692,10 @@ function Footer() {
       </div>
       <div className="container footer__bottom">
         <span>© {new Date().getFullYear()} FORMA/01</span>
-        <span>Szablon demonstracyjny · Polityka prywatności · Wszystkie dane i zeznania na stronie są fikcyjne</span>
+        <div className="footer__legal">
+          <span>Szablon demonstracyjny: trener, oferta, dane i opinie są fikcyjne. Osoby na fotografiach stockowych nie przedstawiają trenera ani jego klientów.</span>
+          <span>Fotografie: <a href="https://www.pexels.com/photo/personal-trainer-assisting-woman-in-gym-workout-39219673/" target="_blank" rel="noreferrer">Vitaly Gariev</a>, <a href="https://www.pexels.com/photo/strong-coach-training-black-woman-exercising-with-battle-ropes-6455777/" target="_blank" rel="noreferrer">Julia Larson</a>, <a href="https://www.pexels.com/photo/portrait-of-man-in-gym-14591530/" target="_blank" rel="noreferrer">Ali Alcántara</a> / <a href="https://www.pexels.com/license/" target="_blank" rel="noreferrer">licencja Pexels</a>.</span>
+        </div>
         <a href="#top">Do góry <ArrowUpRight size={15} /></a>
       </div>
     </footer>
